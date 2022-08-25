@@ -1,0 +1,92 @@
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+}
+
+#calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 3px solid rgb(83, 80, 74);
+  border-radius: 5px;
+  background-color: rgb(39, 44, 26);
+}
+
+#displaybox {
+  display: flex;
+  justify-content: center;
+}
+
+.display {
+  display: flex;
+  /* height: 50px; */
+  height: 100px;
+  width: 270px;
+  justify-content: center;
+  border: 2px solid rgb(135, 117, 88);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+#buttons {
+  display: flex;
+  width: 300px;
+  flex-wrap: wrap;
+}
+
+.btn-toprow {
+  display: flex;
+  width: 300px;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.btn-toprow button {
+  background-color: rgb(20, 20, 20);
+  color: darkkhaki;
+  width: 43.5%;
+  height: 60px;
+  border-radius: 5px;
+  margin: 5px;
+  border: 2px solid black;
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.btn-numbers {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#buttons button:hover {
+  background-color: rgb(44, 37, 16);
+}
+
+#buttons button:active {
+  background-color: rgb(54, 42, 18);
+  /* box-shadow: 1 1px #666; */
+  transform: translateY(2px);
+}
+
+.btn-numbers button {
+  background-color: rgb(20, 20, 0);
+  color: darkkhaki;
+  height: 60px;
+  width: 60px;
+  border-radius: 5px;
+  margin: 5px;
+  border: 2px solid rgb(0, 0, 0);
+  font-size: 16px;
+  font-family: monospace;
+}
