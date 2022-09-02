@@ -26,7 +26,7 @@ body {
   justify-content: center;
 }
 
-.display {
+#display {
   display: flex;
   /* height: 50px; */
   height: 100px;
@@ -36,6 +36,18 @@ body {
   border-radius: 5px;
   margin-bottom: 10px;
   margin-top: 5px;
+}
+
+.innerdisplay {
+  display: flex;
+  height: 60px;
+  width: 200px;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color:aqua;
+  font-size: 18px;
 }
 
 #buttons {
@@ -63,7 +75,7 @@ body {
   font-family: monospace;
 }
 
-.btn-numbers {
+#numbers {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -79,7 +91,7 @@ body {
   transform: translateY(2px);
 }
 
-.btn-numbers button {
+#numbers button {
   background-color: rgb(20, 20, 0);
   color: darkkhaki;
   height: 60px;
