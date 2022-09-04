@@ -1,12 +1,75 @@
 const initialValue = 0;
 
 // const oneBtn = document.querySelector('#one, #two');
-const buttons = document.querySelectorAll('button');
 
-buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-    innerdisplay.textContent += button.id; // IT WAS JUST A PLUS SIGN TO ADD MORE 
+let data = [];
+// let test = Number(data.join(''));
+
+let digits = '';
+let digits2 = '';
+
+// const parse = function (array) {
+//   parseInt(array.join(''));
+// };
+
+// const result = function (array) {
+//   array.reduce(([a], b) => [(a || 0) * 10 + b], []);
+// };
+
+// buttons.forEach((button) => {
+//   button.addEventListener('click', () => {
+//     innerdisplay.textContent += button.textContent;
+//   });
+// });
+
+// store numbers from button id in a string?
+// convert string to array
+// use array.reduce to do the math
+const numbers = document.querySelectorAll('.nbox div');
+
+// numbers.forEach((button) => {
+//   button.addEventListener('click', () => {
+//     console.log(data.push(Number(button.id)));
+//     digits = parseInt(data.join(''));
+//     data = [digits];
+//     console.log(digits);
+//   });
+// });
+
+// document.querySelectorAll('.nbox div').forEach(btn => {
+//   btn.addEventListener('click', (even)) => {
+//     data.push(parseInt(event.target.textContent))
+//   }
+// }
+
+document.querySelectorAll('.nbox').forEach((btn) => {
+  btn.addEventListener('click', (event) => {
+    data.push(parseInt(event.target.textContent));
+    digits = Number(data.join(''));
+    data = [digits];
+    console.log(data);
+    console.log(digits);
   });
+});
+
+// result = data.reduce(([a], b) => [(a || 0) * 10 + b], []);
+
+const addBtn = document.querySelector('.add');
+addBtn.addEventListener('click', () => {
+  // console.log(add(data));
+});
+
+const subtractBtn = document.querySelector('.subtract');
+subtractBtn.addEventListener('click', () => {});
+
+const divideBtn = document.querySelector('.divide');
+divideBtn.addEventListener('click', () => {});
+const multiplyBtn = document.querySelector('.multiply');
+multiplyBtn.addEventListener('click', () => {});
+
+const equalsBtn = document.querySelector('.equals');
+equalsBtn.addEventListener('click', () => {
+  innerdisplay.textContent = operate();
 });
 
 const display = document.querySelector('#display');
@@ -14,32 +77,28 @@ const innerdisplay = document.createElement('innderdisplay');
 innerdisplay.classList.add('innerdisplay');
 display.appendChild(innerdisplay);
 
-let data = [];
-selectMultiply = true;
+// selectMultiply = true;
 
 const operate = function () {
-  const add = data.reduce(
-    (previousValue, currentValue) => previousValue + currentValue
-    );
-    const subtract = data.reduce(
-      (previousValue, currentValue) => previousValue - currentValue
+  // const add = data.reduce(
+  //   (previousValue, currentValue) => previousValue + currentValue
+  // );
+  const subtract = data.reduce(
+    (previousValue, currentValue) => previousValue - currentValue
   );
   const divide = data.reduce(
     (previousValue, currentValue) => previousValue / currentValue
-    );
-    const multiply = data.reduce(
-      (previousValue, currentValue) => previousValue * currentValue
-      );
-      if ((selectAdd = true)) {
-        return add;
-      }
-      if ((selectSubtract = true)) {
-        return subtract;
-  }
-  if ((selectDivide = true)) {
+  );
+  const multiply = data.reduce(
+    (previousValue, currentValue) => previousValue * currentValue
+  );
+  if ((selectAdd = true)) {
+    return add;
+  } else if ((selectSubtract = true)) {
+    return subtract;
+  } else if ((selectDivide = true)) {
     return divide;
-  }
-  if ((selectMultiply = true)) {
+  } else if ((selectMultiply = true)) {
     return multiply;
   }
 };
@@ -63,11 +122,11 @@ const operate = function () {
 //   innerdisplay.textContent = 'test';
 // });
 
-// const add = function (array) {
-//   return array.reduce(
-//     (previousValue, currentValue) => previousValue + currentValue
-//   );
-// };
+const add = function (data) {
+  return data.reduce(
+    (previousValue, currentValue) => previousValue + currentValue
+  );
+};
 
 // const subtract = function (array) {
 //   return array.reduce(
