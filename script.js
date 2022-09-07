@@ -1,147 +1,176 @@
-const initialValue = 0;
-
-// const oneBtn = document.querySelector('#one, #two');
-
 let data = [];
-// let test = Number(data.join(''));
+let data2 = [];
+let data3 = [];
+
+let selectAdd = false;
+let selectSubtract = false;
+let selectDivide = false;
+let selectMultiply = false;
 
 let digits = '';
-let digits2 = '';
 
-// const parse = function (array) {
-//   parseInt(array.join(''));
-// };
+const numbers = document.querySelectorAll('.nbox');
+const buttons = document.querySelectorAll('#numbers');
+const equals = document.querySelector('.equals');
 
-// const result = function (array) {
-//   array.reduce(([a], b) => [(a || 0) * 10 + b], []);
-// };
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    innerdisplay.textContent += e.target.name; // naming divs is useful
+  });
+});
 
-// buttons.forEach((button) => {
-//   button.addEventListener('click', () => {
-//     innerdisplay.textContent += button.textContent;
-//   });
-// });
-
-// store numbers from button id in a string?
-// convert string to array
-// use array.reduce to do the math
-const numbers = document.querySelectorAll('.nbox div');
-
-// numbers.forEach((button) => {
-//   button.addEventListener('click', () => {
-//     console.log(data.push(Number(button.id)));
-//     digits = parseInt(data.join(''));
-//     data = [digits];
-//     console.log(digits);
-//   });
-// });
-
-// document.querySelectorAll('.nbox div').forEach(btn => {
-//   btn.addEventListener('click', (even)) => {
-//     data.push(parseInt(event.target.textContent))
-//   }
-// }
+document.querySelector('.equals');
+equals.addEventListener('click', () => {
+  innerdisplay.textContent = operate();
+});
 
 document.querySelectorAll('.nbox').forEach((btn) => {
   btn.addEventListener('click', (event) => {
     data.push(parseInt(event.target.textContent));
     digits = Number(data.join(''));
     data = [digits];
+    // data3.push(...data)
+    // data.length = 0;
     console.log(data);
+    console.log(data2);
+    console.log(data3);
     console.log(digits);
   });
 });
 
-// result = data.reduce(([a], b) => [(a || 0) * 10 + b], []);
+const combineNum = function () {
+  data2.push(...data);
+  data.length = 0;
+};
+
+const operate = function () {
+  combineNum();
+  if (selectAdd == true) {
+    return add(data2);
+  } else if (selectSubtract == true) {
+    return subtract(data2);
+  } else if (selectDivide == true) {
+    return divide(data2);
+  } else if (selectMultiply == true) {
+    return multiply(data2);
+  }
+};
+
+const selections = function () {
+  (selectSubtract = false),
+    (selectAdd = false),
+    (selectMultiply = false),
+    (selectDivide = false);
+};
 
 const addBtn = document.querySelector('.add');
 addBtn.addEventListener('click', () => {
-  // console.log(add(data));
+  combineNum();
+  operate();
+  pushAdd();
+  selections();
+  selectAdd = true;
 });
 
 const subtractBtn = document.querySelector('.subtract');
-subtractBtn.addEventListener('click', () => {});
+subtractBtn.addEventListener('click', () => {
+  combineNum();
+  operate();
+  pushSubtract();
+  selections();
+  selectSubtract = true;
+});
 
 const divideBtn = document.querySelector('.divide');
-divideBtn.addEventListener('click', () => {});
+divideBtn.addEventListener('click', () => {
+  combineNum();
+  operate();
+  pushDivide();
+  selections();
+  selectDivide = true;
+});
+
 const multiplyBtn = document.querySelector('.multiply');
-multiplyBtn.addEventListener('click', () => {});
+multiplyBtn.addEventListener('click', () => {
+  combineNum();
+  operate();
+  pushMultiply();
+  selections();
+  selectMultiply = true;
+});
 
 const equalsBtn = document.querySelector('.equals');
 equalsBtn.addEventListener('click', () => {
   innerdisplay.textContent = operate();
 });
 
-const display = document.querySelector('#display');
-const innerdisplay = document.createElement('innderdisplay');
-innerdisplay.classList.add('innerdisplay');
-display.appendChild(innerdisplay);
-
-// selectMultiply = true;
-
-const operate = function () {
-  // const add = data.reduce(
-  //   (previousValue, currentValue) => previousValue + currentValue
-  // );
-  const subtract = data.reduce(
-    (previousValue, currentValue) => previousValue - currentValue
-  );
-  const divide = data.reduce(
-    (previousValue, currentValue) => previousValue / currentValue
-  );
-  const multiply = data.reduce(
-    (previousValue, currentValue) => previousValue * currentValue
-  );
-  if ((selectAdd = true)) {
-    return add;
-  } else if ((selectSubtract = true)) {
-    return subtract;
-  } else if ((selectDivide = true)) {
-    return divide;
-  } else if ((selectMultiply = true)) {
-    return multiply;
+const pushAdd = function () {
+  if (data2.length >= 2) {
+    selections();
+    selectAdd = true;
+    data2.length = 0;
+    data2.push(data3.reduce((a, b) => a - b));
   }
 };
 
-// click button to select and store number on button (in array?)
-// show number on calculator display
-// click button to select mathematical function
-// show mathematical function on calculator display
-// click button to select and store second number on button (in array?)
-// show number on calculator display
-// click equals button to call mathematical function
-// mathematical function uses numbers stored in array from clicked buttons and outputs an answer
-// show answer on calculator display
+const pushSubtract = function () {
+  if (data2.length >= 2) {
+    selections();
+    selectSubtract = true;
+    data2.length = 0;
+    data2.push(data3.reduce((a, b) => a - b));
+  }
+};
+const pushDivide = function () {
+  if (data2.length >= 2) {
+    selections();
+    selectDivide == true;
+    data2.length = 0;
+    data2.push(data3.reduce((a, b) => a / b));
+  }
+};
+const pushMultiply = function () {
+  if (data2.length >= 2) {
+    selections();
+    selectMultiply = true;
+    data2.length = 0;
+    data2.push(data3.reduce((a, b) => a * b));
+  }
+};
 
-// console.log(add);
-// console.log(subtract);
-// console.log(divide);
-// console.log(multiply);
-
-// oneBtn.addEventListener('click', () => {
-//   innerdisplay.textContent = 'test';
-// });
-
-const add = function (data) {
-  return data.reduce(
+const add = function (data2) {
+  data3.length = 0;
+  data3.push(data2.reduce((a, b) => a + b));
+  return data2.reduce(
     (previousValue, currentValue) => previousValue + currentValue
   );
 };
 
-// const subtract = function (array) {
-//   return array.reduce(
-//     (previousValue, currentValue) => previousValue - currentValue
-//   );
-// };
+const subtract = function (data2) {
+  data3.length = 0;
+  data3.push(data2.reduce((a, b) => a - b));
+  return data2.reduce(
+    (previousValue, currentValue) => previousValue - currentValue
+  );
+};
 
-// const divide = function (array) {
-//   return array.reduce(
-//     (previousValue, currentValue) => previousValue / currentValue
-//   );
-// };
+const divide = function (data2) {
+  data3.length = 0;
+  data3.push(data2.reduce((a, b) => a / b));
+  return data2.reduce(
+    (previousValue, currentValue) => previousValue / currentValue
+  );
+};
 
-// const multiply = function (array1) {
-//   return array.reduce(
-//     (previousValue, currentValue) => previousValue * currentValue
-//   );
-// };
+const multiply = function (data2) {
+  data3.length = 0;
+  data3.push(data2.reduce((a, b) => a * b));
+  return data2.reduce(
+    (previousValue, currentValue) => previousValue * currentValue
+  );
+};
+
+const display = document.querySelector('#display');
+const innerdisplay = document.createElement('innderdisplay');
+innerdisplay.classList.add('innerdisplay');
+display.appendChild(innerdisplay);
