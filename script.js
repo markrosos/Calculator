@@ -20,11 +20,11 @@ buttons.forEach((button) => {
   });
 });
 
-document.querySelector('.equals');
-equals.addEventListener('click', () => {
-  innerdisplay.textContent = operate();
-  console.log(innerdisplay.textContent);
-});
+// document.querySelector('.equals');
+// equals.addEventListener('click', () => {
+//   innerdisplay.textContent = operate();
+//   console.log(innerdisplay.textContent);
+// });
 
 // try sending a whole string with decimal and then converting to a number
 // since decimal can't be treated as a number
@@ -39,7 +39,7 @@ document.querySelectorAll('.nbox').forEach((btn) => {
     // data3.push(...data)
     // data.length = 0;
     console.log(data);
-    // console.log(data2);
+    console.log(data2);
     // console.log(data3);
     // console.log(digits);
     // console.log(operate());
@@ -77,23 +77,23 @@ const selections = function () {
 // operator button functions continually perform an operation and store the
 // result in data3[] to allow for a switch from operator type.
 
-const addBtn = document.querySelector('.add');
-addBtn.addEventListener('click', () => {
-  combineNum();
-  operate();
-  pushAdd();
-  selections();
-  selectAdd = true;
-});
+// const addBtn = document.querySelector('.add');
+// addBtn.addEventListener('click', () => {
+//   combineNum();
+//   operate();
+//   pushAdd();
+//   selections();
+//   selectAdd = true;
+// });
 
-const subtractBtn = document.querySelector('.subtract');
-subtractBtn.addEventListener('click', () => {
-  combineNum();
-  operate();
-  pushSubtract();
-  selections();
-  selectSubtract = true;
-});
+// const subtractBtn = document.querySelector('.subtract');
+// subtractBtn.addEventListener('click', () => {
+//   combineNum();
+//   operate();
+//   pushSubtract();
+//   selections();
+//   selectSubtract = true;
+// });
 
 const divideBtn = document.querySelector('.divide');
 divideBtn.addEventListener('click', () => {
@@ -113,10 +113,10 @@ multiplyBtn.addEventListener('click', () => {
   selectMultiply = true;
 });
 
-const equalsBtn = document.querySelector('.equals');
-equalsBtn.addEventListener('click', () => {
-  innerdisplay.textContent = operate();
-});
+// const equalsBtn = document.querySelector('.equals');
+// equalsBtn.addEventListener('click', () => {
+//   innerdisplay.textContent = operate();
+// });
 
 // called by operator buttons. these functions reset the operator type and
 // perform the intended type of operation, storing it in data3[] for later use.
@@ -195,17 +195,62 @@ const innerdisplay = document.createElement('innderdisplay');
 innerdisplay.classList.add('innerdisplay');
 display.appendChild(innerdisplay);
 
-const addTest = function (data2) {
-  // data.push(data2.reduce((a, b) => a + b));
-  // data2 = data2.reduce((a, b) => a + b);
-  result = data2.reduce((a, b) => a + b);
-  return result;
-  // data2.length = 0;
-  // [result] = data2
-  // return data2.reduce((a, b) => a + b);
+// new functions intended to eliminate the need for data3[] entirely
+// result is stored in data2
+// operator function will continually operate on data2 and call below functions
+// to store result in variable, empty data2[], and put result back into data2 for
+// continued operations on data2
+
+const equalsBtn = document.querySelector('.equals');
+equalsBtn.addEventListener('click', () => {
+  operateTest();
+  innerdisplay.textContent = result;
+});
+
+const addBtn = document.querySelector('.add');
+addBtn.addEventListener('click', () => {
+  operateTest();
+  selections();
+  selectAdd = true;
+  addTest(data2);
+  arrayTest();
+  console.log(result);
+});
+
+const subtractBtn = document.querySelector('.subtract');
+subtractBtn.addEventListener('click', () => {
+
+  operateTest();
+  selections();
+  selectSubtract = true;
+  subtractTest(data2);
+  arrayTest();
+  console.log(result);
+});
+
+const operateTest = function () {
+  combineNum();
+  if (data2.length >= 2) {
+    if (selectAdd == true) {
+      addTest(data2);
+    } else if (selectSubtract == true) {
+      subtractTest(data2);
+    }
+    arrayTest();
+  }
 };
 
-const testTest = function () {
+const addTest = function (data2) {
+  result = data2.reduce((a, b) => a + b);
+  return result;
+};
+
+const subtractTest = function (data2) {
+  result = data2.reduce((a, b) => a - b);
+  return result;
+};
+
+const arrayTest = function () {
   data2.length = 0;
   data2 = [result];
 };
