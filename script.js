@@ -15,7 +15,7 @@ const equals = document.querySelector('.equals');
 const display = document.querySelector('#display');
 const clearButton = document.querySelector('.clear');
 const deleteButton = document.querySelector('.delete');
-const innerdisplay = document.createElement('innderdisplay');
+const innerdisplay = document.createElement('innerdisplay');
 innerdisplay.classList.add('innerdisplay');
 display.appendChild(innerdisplay);
 
@@ -48,7 +48,7 @@ document.querySelectorAll('.nbox').forEach((btn) => {
   });
 });
 
-// takes numbers from data[], convers them to a number and pushes them to
+// takes numbers from data[], converts them to a number and pushes them to
 // data2[] for operation, and empties data[]
 const combineNum = function () {
   data2.push(Number(...data));
