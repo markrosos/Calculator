@@ -40,14 +40,14 @@ body {
 
 .innerdisplay {
   display: flex;
-  height: 60px;
-  width: 200px;
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  color:aqua;
-  font-size: 18px;
+  height: 65px;
+  width: 250px;
+  /* justify-items: center; */
+  justify-content: flex-end;
+  align-items:flex-end;
+  align-content: flex-end;
+  color:rgb(213, 207, 197);
+  font-size: 25px;
 }
 
 #buttons {
