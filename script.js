@@ -23,19 +23,20 @@ buttons.forEach((button) => {
   });
 });
 
-// adds button presses as number to data[] and joins them
+// adds button presses as string to data[] and joins them
 document.querySelectorAll('.nbox').forEach((btn) => {
   btn.addEventListener('click', (event) => {
     data.push(event.target.textContent); 
-    digits = data.join('');
-    data = [digits];
+    digits = data.join(''); 
+    data = [digits]; 
     console.log(data);
     console.log(data2);
     console.log(result);
   });
 });
 
-// takes numbers from data[], pushes them to data2[] for operation, and empties data[]
+// takes numbers from data[], convers them to a number and pushes them to 
+// data2[] for operation, and empties data[]
 const combineNum = function () {
   data2.push(Number(...data));
   data.length = 0;
@@ -47,6 +48,44 @@ const selections = function () {
     (selectAdd = false),
     (selectMultiply = false),
     (selectDivide = false);
+};
+
+const selectionRules = function () {
+  if (selectAdd) add(data2);
+  else if (selectSubtract) subtract(data2);
+  else if (selectDivide) divide(data2);
+  else if (selectMultiply) multiply(data2);
+};
+
+const shiftNum = function () {
+  data2.length = 0;
+  data2 = [result];
+};
+
+const operate = function () {
+  combineNum();
+  if (data2.length >= 2) {
+    selectionRules();
+    shiftNum();
+    selections();
+  }
+};
+
+const add = function (data2) {
+  result = data2.reduce((a, b) => a + b);
+  return result;
+};
+const subtract = function (data2) {
+  result = data2.reduce((a, b) => a - b);
+  return result;
+};
+const divide = function (data2) {
+  result = data2.reduce((a, b) => a / b);
+  return result;
+};
+const multiply = function (data2) {
+  result = data2.reduce((a, b) => a * b);
+  return result;
 };
 
 const equalsBtn = document.querySelector('.equals');
@@ -86,41 +125,3 @@ multiplyBtn.addEventListener('click', () => {
   multiply(data2);
   shiftNum();
 });
-
-const selectionRules = function () {
-  if (selectAdd) add(data2);
-  else if (selectSubtract) subtract(data2);
-  else if (selectDivide) divide(data2);
-  else if (selectMultiply) multiply(data2);
-};
-
-const operate = function () {
-  combineNum();
-  if (data2.length >= 2) {
-    selectionRules();
-    shiftNum();
-    selections();
-  }
-};
-
-const add = function (data2) {
-  result = data2.reduce((a, b) => a + b);
-  return result;
-};
-const subtract = function (data2) {
-  result = data2.reduce((a, b) => a - b);
-  return result;
-};
-const divide = function (data2) {
-  result = data2.reduce((a, b) => a / b);
-  return result;
-};
-const multiply = function (data2) {
-  result = data2.reduce((a, b) => a * b);
-  return result;
-};
-
-const shiftNum = function () {
-  data2.length = 0;
-  data2 = [result];
-};
