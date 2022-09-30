@@ -97,8 +97,10 @@ const multiply = function (data2) {
 
 const equalsBtn = document.querySelector('.equals');
 equalsBtn.addEventListener('click', () => {
-  operate();
-  innerdisplay.textContent = result;
+  if (result != '') {
+    operate();
+    innerdisplay.textContent = result;
+  }
 });
 
 const addBtn = document.querySelector('.add');
