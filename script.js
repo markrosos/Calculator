@@ -42,9 +42,6 @@ document.querySelectorAll('.nbox').forEach((btn) => {
     data.push(event.target.textContent);
     digits = data.join('');
     data = [digits];
-    console.log(data);
-    console.log(data2);
-    console.log(result);
   });
 });
 
