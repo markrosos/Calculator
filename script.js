@@ -12,9 +12,13 @@ let result = '';
 const numbers = document.querySelectorAll('.nbox');
 const buttons = document.querySelectorAll('#numbers');
 const equals = document.querySelector('.equals');
+const display = document.querySelector('#display');
+const innerdisplay = document.createElement('innderdisplay');
+innerdisplay.classList.add('innerdisplay');
+display.appendChild(innerdisplay);
 
 buttons.forEach((button) => {
-  button.addEventListener('click', (e) => {
+  button.addEventListener('click', (e) => {  
     innerdisplay.textContent += e.target.name; // naming divs is very useful
   });
 });
@@ -22,9 +26,9 @@ buttons.forEach((button) => {
 // adds button presses as number to data[] and joins them
 document.querySelectorAll('.nbox').forEach((btn) => {
   btn.addEventListener('click', (event) => {
-    data.push(event.target.textContent);
+    data.push(event.target.textContent); 
     digits = data.join('');
-    data = [digits]
+    data = [digits];
     console.log(data);
     console.log(data2);
     console.log(result);
@@ -65,7 +69,6 @@ subtractBtn.addEventListener('click', () => {
   selectSubtract = true;
   subtractTest(data2);
   arrayTest();
-
 });
 
 const divideBtn = document.querySelector('.divide');
@@ -84,18 +87,17 @@ multiplyBtn.addEventListener('click', () => {
   arrayTest();
 });
 
+const selectionRules = function () {
+  if (selectAdd) addTest(data2);
+  else if (selectSubtract) subtractTest(data2);
+  else if (selectDivide) divideTest(data2);
+  else if (selectMultiply) multiplyTest(data2);
+};
+
 const operateTest = function () {
   combineNum();
   if (data2.length >= 2) {
-    if (selectAdd == true) {
-      addTest(data2);
-    } else if (selectSubtract == true) {
-      subtractTest(data2);
-    } else if (selectDivide == true) {
-      divideTest(data2);
-    } else if (selectMultiply == true) {
-      multiplyTest(data2);
-    }
+    selectionRules();
     arrayTest();
     selections();
   }
@@ -121,13 +123,8 @@ const multiplyTest = function (data2) {
 const arrayTest = function () {
   data2.length = 0;
   data2 = [result];
-  // parseFloat([result])
 };
 
-const display = document.querySelector('#display');
-const innerdisplay = document.createElement('innderdisplay');
-innerdisplay.classList.add('innerdisplay');
-display.appendChild(innerdisplay);
 
 // const operate = function () {
 //   // called by = button. calls combineNum(), calls operater functions on data2[], and returns result
