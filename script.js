@@ -13,12 +13,25 @@ const numbers = document.querySelectorAll('.nbox');
 const buttons = document.querySelectorAll('#numbers');
 const equals = document.querySelector('.equals');
 const display = document.querySelector('#display');
+const clearButton = document.querySelector('.clear');
+const deleteButton = document.querySelector('.delete');
 const innerdisplay = document.createElement('innderdisplay');
 innerdisplay.classList.add('innerdisplay');
 display.appendChild(innerdisplay);
 
+clearButton.addEventListener('click', () => {
+  innerdisplay.textContent = '';
+  data.length = 0;
+  data2.length = 0;
+});
+
+deleteButton.addEventListener('click', () => {
+  data = data.map((data) => data.slice(0, -1));
+  innerdisplay.textContent = innerdisplay.textContent.slice(0, -1);
+});
+
 buttons.forEach((button) => {
-  button.addEventListener('click', (e) => {  
+  button.addEventListener('click', (e) => {
     innerdisplay.textContent += e.target.name; // naming divs is very useful
   });
 });
@@ -26,16 +39,16 @@ buttons.forEach((button) => {
 // adds button presses as string to data[] and joins them
 document.querySelectorAll('.nbox').forEach((btn) => {
   btn.addEventListener('click', (event) => {
-    data.push(event.target.textContent); 
-    digits = data.join(''); 
-    data = [digits]; 
+    data.push(event.target.textContent);
+    digits = data.join('');
+    data = [digits];
     console.log(data);
     console.log(data2);
     console.log(result);
   });
 });
 
-// takes numbers from data[], convers them to a number and pushes them to 
+// takes numbers from data[], convers them to a number and pushes them to
 // data2[] for operation, and empties data[]
 const combineNum = function () {
   data2.push(Number(...data));
