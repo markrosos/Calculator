@@ -109,6 +109,7 @@ addBtn.addEventListener('click', () => {
   selectAdd = true;
   add(data2);
   shiftNum();
+  innerdisplay.textContent = result;
 });
 
 const subtractBtn = document.querySelector('.subtract');
@@ -117,6 +118,7 @@ subtractBtn.addEventListener('click', () => {
   selectSubtract = true;
   subtract(data2);
   shiftNum();
+  innerdisplay.textContent = result;
 });
 
 const divideBtn = document.querySelector('.divide');
@@ -125,6 +127,7 @@ divideBtn.addEventListener('click', () => {
   selectDivide = true;
   divide(data2);
   shiftNum();
+  innerdisplay.textContent = result;
 });
 
 const multiplyBtn = document.querySelector('.multiply');
@@ -133,4 +136,5 @@ multiplyBtn.addEventListener('click', () => {
   selectMultiply = true;
   multiply(data2);
   shiftNum();
+  innerdisplay.textContent = result;
 });

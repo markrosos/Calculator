@@ -31,7 +31,8 @@ body {
   /* height: 50px; */
   height: 100px;
   width: 270px;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   border: 2px solid rgb(135, 117, 88);
   border-radius: 5px;
   margin-bottom: 10px;
@@ -45,9 +46,11 @@ body {
   /* justify-items: center; */
   justify-content: flex-end;
   align-items:flex-end;
-  align-content: flex-end;
+  /* align-content: flex-end; */
   color:rgb(213, 207, 197);
-  font-size: 25px;
+  font-size: 40px;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 7px;
 }
 
 #buttons {
