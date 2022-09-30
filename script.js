@@ -51,76 +51,76 @@ const selections = function () {
 
 const equalsBtn = document.querySelector('.equals');
 equalsBtn.addEventListener('click', () => {
-  operateTest();
+  operate();
   innerdisplay.textContent = result;
 });
 
 const addBtn = document.querySelector('.add');
 addBtn.addEventListener('click', () => {
-  operateTest();
+  operate();
   selectAdd = true;
-  addTest(data2);
-  arrayTest();
+  add(data2);
+  shiftNum();
 });
 
 const subtractBtn = document.querySelector('.subtract');
 subtractBtn.addEventListener('click', () => {
-  operateTest();
+  operate();
   selectSubtract = true;
-  subtractTest(data2);
-  arrayTest();
+  subtract(data2);
+  shiftNum();
 });
 
 const divideBtn = document.querySelector('.divide');
 divideBtn.addEventListener('click', () => {
-  operateTest();
+  operate();
   selectDivide = true;
-  divideTest(data2);
-  arrayTest();
+  divide(data2);
+  shiftNum();
 });
 
 const multiplyBtn = document.querySelector('.multiply');
 multiplyBtn.addEventListener('click', () => {
-  operateTest();
+  operate();
   selectMultiply = true;
-  multiplyTest(data2);
-  arrayTest();
+  multiply(data2);
+  shiftNum();
 });
 
 const selectionRules = function () {
-  if (selectAdd) addTest(data2);
-  else if (selectSubtract) subtractTest(data2);
-  else if (selectDivide) divideTest(data2);
-  else if (selectMultiply) multiplyTest(data2);
+  if (selectAdd) add(data2);
+  else if (selectSubtract) subtract(data2);
+  else if (selectDivide) divide(data2);
+  else if (selectMultiply) multiply(data2);
 };
 
-const operateTest = function () {
+const operate = function () {
   combineNum();
   if (data2.length >= 2) {
     selectionRules();
-    arrayTest();
+    shiftNum();
     selections();
   }
 };
 
-const addTest = function (data2) {
+const add = function (data2) {
   result = data2.reduce((a, b) => a + b);
   return result;
 };
-const subtractTest = function (data2) {
+const subtract = function (data2) {
   result = data2.reduce((a, b) => a - b);
   return result;
 };
-const divideTest = function (data2) {
+const divide = function (data2) {
   result = data2.reduce((a, b) => a / b);
   return result;
 };
-const multiplyTest = function (data2) {
+const multiply = function (data2) {
   result = data2.reduce((a, b) => a * b);
   return result;
 };
 
-const arrayTest = function () {
+const shiftNum = function () {
   data2.length = 0;
   data2 = [result];
 };
