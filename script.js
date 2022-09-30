@@ -19,40 +19,31 @@ buttons.forEach((button) => {
   });
 });
 
-// try sending a whole string with decimal and then converting to a number
-// since decimal can't be treated as a number
-
+// adds button presses as number to data[] and joins them
 document.querySelectorAll('.nbox').forEach((btn) => {
-  // adds button presses as number to data[] and joins them
   btn.addEventListener('click', (event) => {
-    data.push(parseFloat(event.target.textContent));
-    digits = Number(data.join(''));
-    data = [digits];
+    data.push(event.target.textContent);
+    digits = data.join('');
+    data = [digits]
     console.log(data);
     console.log(data2);
+    console.log(result);
   });
 });
 
+// takes numbers from data[], pushes them to data2[] for operation, and empties data[]
 const combineNum = function () {
-  // takes numbers from data[], pushes them to data2[] for operation, and empties data[]
-  data2.push(...data);
+  data2.push(Number(...data));
   data.length = 0;
 };
 
-
+// resets all operator selections
 const selections = function () {
-  // resets all operator selections
   (selectSubtract = false),
-  (selectAdd = false),
-  (selectMultiply = false),
-  (selectDivide = false);
+    (selectAdd = false),
+    (selectMultiply = false),
+    (selectDivide = false);
 };
-
-// new functions intended to eliminate the need for data3[] entirely
-// result is stored in data2
-// operator function will continually operate on data2 and call below functions
-// to store result in variable, empty data2[], and put result back into data2 for
-// continued operations on data2
 
 const equalsBtn = document.querySelector('.equals');
 equalsBtn.addEventListener('click', () => {
@@ -63,41 +54,34 @@ equalsBtn.addEventListener('click', () => {
 const addBtn = document.querySelector('.add');
 addBtn.addEventListener('click', () => {
   operateTest();
-  selections();
   selectAdd = true;
   addTest(data2);
   arrayTest();
-  console.log(result);
 });
 
 const subtractBtn = document.querySelector('.subtract');
 subtractBtn.addEventListener('click', () => {
   operateTest();
-  selections();
   selectSubtract = true;
   subtractTest(data2);
   arrayTest();
-  console.log(result);
+
 });
 
 const divideBtn = document.querySelector('.divide');
 divideBtn.addEventListener('click', () => {
   operateTest();
-  selections();
   selectDivide = true;
   divideTest(data2);
   arrayTest();
-  console.log(result);
 });
 
 const multiplyBtn = document.querySelector('.multiply');
 multiplyBtn.addEventListener('click', () => {
   operateTest();
-  selections();
   selectMultiply = true;
   multiplyTest(data2);
   arrayTest();
-  console.log(result);
 });
 
 const operateTest = function () {
@@ -113,6 +97,7 @@ const operateTest = function () {
       multiplyTest(data2);
     }
     arrayTest();
+    selections();
   }
 };
 
@@ -120,7 +105,6 @@ const addTest = function (data2) {
   result = data2.reduce((a, b) => a + b);
   return result;
 };
-
 const subtractTest = function (data2) {
   result = data2.reduce((a, b) => a - b);
   return result;
@@ -137,6 +121,7 @@ const multiplyTest = function (data2) {
 const arrayTest = function () {
   data2.length = 0;
   data2 = [result];
+  // parseFloat([result])
 };
 
 const display = document.querySelector('#display');
@@ -145,10 +130,10 @@ innerdisplay.classList.add('innerdisplay');
 display.appendChild(innerdisplay);
 
 // const operate = function () {
-  //   // called by = button. calls combineNum(), calls operater functions on data2[], and returns result
-  //   combineNum();
-  //   if (selectAdd == true) {
-    //     return add(data2);
+//   // called by = button. calls combineNum(), calls operater functions on data2[], and returns result
+//   combineNum();
+//   if (selectAdd == true) {
+//     return add(data2);
 //   } else if (selectSubtract == true) {
 //     return subtract(data2);
 //   } else if (selectDivide == true) {
@@ -272,5 +257,3 @@ display.appendChild(innerdisplay);
 //     (previousValue, currentValue) => previousValue * currentValue
 //   );
 // };
-
-
