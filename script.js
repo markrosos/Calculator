@@ -54,10 +54,7 @@ const combineNum = function () {
 
 // resets all operator selections
 const selections = function () {
-  (selectSubtract = false),
-    (selectAdd = false),
-    (selectMultiply = false),
-    (selectDivide = false);
+  selectAdd = selectSubtract = selectDivide = selectMultiply = false;
 };
 
 const selectionRules = function () {
